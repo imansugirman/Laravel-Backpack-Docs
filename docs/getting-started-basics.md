@@ -9,7 +9,7 @@
 
 <a name="what-is-backpack"></a>
 ## What is Backpack?
-A software that helps Laravel professionals build administration panels - secure areas where administrators login and create, read, update and delete application information. It is *not* a CMS, it is more a framework that lets you *build your own* CMS. You can install it in your existing project or in a totally new project. 
+A software that helps Laravel professionals build administration panels - secure areas where administrators login and create, read, update and delete application information. It is *not* a CMS, it is more a framework that lets you *build your own* CMS. You can install it in your existing project or in a totally new project.
 
 It’s designed to be flexible enough to allow you to **build admin panels for everything from simple presentation websites to CRMs, ERPs, eCommerce, eLearning, etc**. We can vouch for that, because we have built all that stuff using Backpack already.
 
@@ -38,17 +38,17 @@ Mind that you will _almost never_ use all of Backpack's features in one CRUD. Bu
 <a name="backpack-base"></a>
 ### Backpack\Base
 
-**Backpack/Base** is the package that **will handle the authentication** and provide you with minimal admin area functionality. **Your admin will be able to login and change his password or email.** And that’s pretty much it. 
+**Backpack/Base** is the package that **will handle the authentication** and provide you with minimal admin area functionality. **Your admin will be able to login and change his password or email.** And that’s pretty much it.
 
 ![Backpack 3.5 Authentication Screens](https://backpackforlaravel.com/uploads/docs-3-5/getting_started/auth_screens.png)
 
-Thanks to Base, after you [install Backpack](/docs/{{version}}/installation) (don't do it now), you’ll be able to log into your admin panel at ```http://yourapp/admin```. You can change the URL prefix from ```admin``` to something else in your ```config/backpack/base.php``` file, along with a bunch of other configuration options. [Click here](https://github.com/Laravel-Backpack/Base/blob/master/src/config/backpack/base.php) to browse the configuration file and see what it can do for you.
+Thanks to Base, after you [install Backpack](/docs/installation) (don't do it now), you’ll be able to log into your admin panel at ```http://yourapp/admin```. You can change the URL prefix from ```admin``` to something else in your ```config/backpack/base.php``` file, along with a bunch of other configuration options. [Click here](https://github.com/Laravel-Backpack/Base/blob/master/src/config/backpack/base.php) to browse the configuration file and see what it can do for you.
 
-Backpack\Base pulls in the free [AdminLTE](https://adminlte.io/themes/AdminLTE/index2.html) theme and enhances the design a little bit. So any front-end block that AdminLTE has, you'll also be able to use in your custom pages. It also includes a system for bubble notifications, which you can use across the admin panel. You can easily [trigger notification bubbles in PHP](/docs/{{version}}/base-about#triggering-notification-bubbles-in-php) or [trigger notification bubbles in JavaScript](/docs/{{version}}/base-about#triggering-notification-bubbles-in-javascript).
+Backpack\Base pulls in the free [AdminLTE](https://adminlte.io/themes/AdminLTE/index2.html) theme and enhances the design a little bit. So any front-end block that AdminLTE has, you'll also be able to use in your custom pages. It also includes a system for bubble notifications, which you can use across the admin panel. You can easily [trigger notification bubbles in PHP](/docs/base-about#triggering-notification-bubbles-in-php) or [trigger notification bubbles in JavaScript](/docs/base-about#triggering-notification-bubbles-in-javascript).
 
 <a name="backpack-crud"></a>
 ### Backpack\CRUD
-This is where it gets interesting. As soon as you [install Backpack](docs/{{version}}/installation) in your project, you can create **CRUDs** for your admins to easily manipulate DB information. Let’s browse through a simple example, of creating a CRUD administration panel for a Tag entity:
+This is where it gets interesting. As soon as you [install Backpack](docs/installation) in your project, you can create **CRUDs** for your admins to easily manipulate DB information. Let’s browse through a simple example, of creating a CRUD administration panel for a Tag entity:
 
 ```zsh
 # STEP 1. create migration
@@ -58,7 +58,7 @@ php artisan migrate
 # STEP 2. create a model, a request and a controller for the admin panel
 php artisan backpack:crud tag #use singular, not plural
 
-# STEP 3. add a route to routes/backpack/custom.php (under the admin prefix and auth middleware): 
+# STEP 3. add a route to routes/backpack/custom.php (under the admin prefix and auth middleware):
 php artisan backpack:base:add-custom-route "CRUD::resource('tag', 'TagCrudController');"
 
 # STEP 4. add a sidebar item
@@ -89,7 +89,7 @@ use App\Http\Requests\TagCrudRequest as UpdateRequest;
 
 class TagCrudController extends CrudController {
 
-  public function setup() 
+  public function setup()
   {
       $this->crud->setModel("App\Models\Tag");
       $this->crud->setRoute("admin/tag");
@@ -125,4 +125,4 @@ You should notice:
 - The request file is typehinted in the ```store()``` and ```update()``` methods; Since in case form validation fails, the information won’t even reach these methods;
 - All the CRUD setup is usually done in the ```setup()``` method;
 
-**That’s all for today! **If you want to learn more, go ahead and [read the next lesson](/docs/{{version}}/getting-started-crud-operations) of this series.
+**That’s all for today! **If you want to learn more, go ahead and [read the next lesson](/docs/getting-started-crud-operations) of this series.

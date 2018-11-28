@@ -21,7 +21,7 @@ use App\Http\Requests\TagCrudRequest as UpdateRequest;
 
 class TagCrudController extends CrudController {
 
-  public function setup() 
+  public function setup()
   {
       $this->crud->setModel("App\Models\Tag");
       $this->crud->setRoute("admin/tag");
@@ -56,7 +56,7 @@ By default, CRUDs have these operations already enabled:
 - **Create** - using a create form (aka “*add form*”)
 - **ListEntries** - using AJAX DataTables (aka “*list view*”, aka “*table view*”)
 - **Update** - using an update form (aka “*edit form*”)
-- **Delete** - using a *button* in the *list view* 
+- **Delete** - using a *button* in the *list view*
 
 These are the basic operations an admin can execute on an Eloquent model, thanks to Backpack. We do have additional operations (Preview, Reorder, Revisions), and you can easily _create a custom operation_, but let’s not get ahead of ourselves. Baby steps. **Let's go through the most important features of the operations you'll be using _all the time_: ListEntries, Create and Update**.
 
@@ -86,7 +86,7 @@ $this->crud->removeFields(['name_1', 'name_2']);
 
 // pro tip:
 // a quick way to add simple fields: let the CRUD decide what field type it is
-$this->crud->addField('db_column_name'); 
+$this->crud->addField('db_column_name');
 ```
 
 A typical *field definition array* will need at least three things:
@@ -95,7 +95,7 @@ A typical *field definition array* will need at least three things:
 - ```label``` - the human-readable label for the input (will be generated from ```name``` if not given);
 
 
-You can use [one of the 44+ field types we’ve provided](/docs/{{version}}/crud-fields#default-field-types), or easily [create a custom field type](/docs/{{version}}/crud-fields#creating-a-custom-field-type) if you have some super-specific need that we haven’t covered yet, or even [overwrite how a field type works](#overwriting-default-field-types). Take a few minutes and [browse the 44+ field types](/docs/{{version}}/crud-fields#default-field-types), to understand how the definition array differs from one to another and how many use cases you have already covered.
+You can use [one of the 44+ field types we’ve provided](/docs/crud-fields#default-field-types), or easily [create a custom field type](/docs/crud-fields#creating-a-custom-field-type) if you have some super-specific need that we haven’t covered yet, or even [overwrite how a field type works](#overwriting-default-field-types). Take a few minutes and [browse the 44+ field types](/docs/crud-fields#default-field-types), to understand how the definition array differs from one to another and how many use cases you have already covered.
 
 Let's take another example, slightly more complicated than the ```text``` fields we used above. Something you'll encounter all the time is relationship fields. So let's say the ```Tag``` model has an **n-n relationship** with an Article model:
 
@@ -139,13 +139,13 @@ $this->crud->addField([
 
 
 > When generating a CrudController, you’ll be using the ```$this->crud->setFromDb();``` method by default, which tries to figure out what fields you might need in your create/update forms and in your list view, but - as you'd expect - only works for the simple field types. You can:
-> 
+>
 > (1) choose to keep using ```setFromDb()``` and add/remove/change additional fields
-> 
->   or 
-> 
+>
+>   or
+>
 > (2) delete ```setFromDb()``` and manually define each field and column;
-> 
+>
 > **Our recommendation**, for anything but the simplest CRUDs, **is to manually define each field** - much easier to understand and customize, for your future self and any other developer that comes after you.
 
 <a name="callbacks"></a>
@@ -153,7 +153,7 @@ $this->crud->addField([
 
 Developers coming from GroceryCRUD on CodeIgniter or other CRUD systems will be looking for callbacks to run ```before_insert```, ```before_update```, ```after_insert```, ```after_update```.
 
-**There are no callbacks in Backpack**, because there's no need. The code for the create & update operations is out in the open for you to customize. Notice your EntityCrudController already has the following methods, which you can modify as you wish: 
+**There are no callbacks in Backpack**, because there's no need. The code for the create & update operations is out in the open for you to customize. Notice your EntityCrudController already has the following methods, which you can modify as you wish:
 
 ```php
 public function store(StoreRequest $request)
@@ -196,7 +196,7 @@ $this->crud->setColumnsDetails(['column_1', 'column_2'], ['attribute' => 'value'
 $this->crud->setColumns([$column_definition_array_1, $column_definition_array_2]); // make these the only columns in the table
 ```
 
-You can use one of the [14+ column types](/docs/{{version}}/crud-columns#default-column-types) to show information to the user in the table, or easily [create a custom column type](/docs/{{version}}/crud-columns#creating-a-custom-column-type), if you have a super-specific need. Here's an example of using the methods above:
+You can use one of the [14+ column types](/docs/crud-columns#default-column-types) to show information to the user in the table, or easily [create a custom column type](/docs/crud-columns#creating-a-custom-column-type), if you have a super-specific need. Here's an example of using the methods above:
 
 ```php
 $this->crud->addColumn([
@@ -214,7 +214,7 @@ $this->crud->addColumn('text'); // adds a text column, at the end of the stack
 
 ![Monster CRUD - List Entries Filters](https://backpackforlaravel.com/uploads/docs-3-5/getting_started/backpack_filters.png)
 
-Filters provide an easy way for the admin to well… _filter_ the ListEntries table. The syntax is very similar to Fields and Columns and you can use one of the [existing 8 filter types](/docs/{{version}}/crud-filters) or easily [create a custom filter](/docs/{{version}}/crud-filters#creating-custom-filters). 
+Filters provide an easy way for the admin to well… _filter_ the ListEntries table. The syntax is very similar to Fields and Columns and you can use one of the [existing 8 filter types](/docs/crud-filters) or easily [create a custom filter](/docs/crud-filters#creating-custom-filters).
 
 ```php
 $this->crud->addFilter($options, $values, $filter_logic);
@@ -222,14 +222,14 @@ $this->crud->removeFilter($name);
 $this->crud->removeAllFilters();
 ```
 
-For more on this, check out the [filters documentation page](/docs/{{version}}/crud-filters), when you need them.
+For more on this, check out the [filters documentation page](/docs/crud-filters), when you need them.
 
 <a name="buttons"></a>
 ### Buttons
 
 ![Tag CRUD - List Entries Buttons](https://backpackforlaravel.com/uploads/docs-3-5/getting_started/backpack_buttons.png)
 
-If you want to add a custom button to an entry, you can do that. If you want to remove a button, you can also do that. Look for the [buttons documentation](/docs/{{version}}/crud-buttons) when you need it.  
+If you want to add a custom button to an entry, you can do that. If you want to remove a button, you can also do that. Look for the [buttons documentation](/docs/crud-buttons) when you need it.  
 
 ```php
 // positions: 'beginning' and 'end'
@@ -240,4 +240,4 @@ $this->crud->removeButton($name);
 $this->crud->removeButtonFromStack($name, $stack);
 ```
 
-**That’s it for today!** Thanks for sticking with us this long. This has been the most important and longest lesson. You can go ahead and [install Backpack](/docs/{{version}}/installation) now, as you’ve already gone through the most important features. Or [read the next lesson](/docs/{{version}}/getting-started-advanced-features), about advanced features.
+**That’s it for today!** Thanks for sticking with us this long. This has been the most important and longest lesson. You can go ahead and [install Backpack](/docs/installation) now, as you’ve already gone through the most important features. Or [read the next lesson](/docs/getting-started-advanced-features), about advanced features.
